@@ -1,0 +1,9 @@
+
+header
+	.grid.grid-rigid
+		.cell.cell-row.cell-header
+			if item.date
+				time(datetime=computerDatetime(post.date)) #{humanDatetime(post.date)}
+			h1= item.title
+			if item.subtitle
+				h2= item.subtitle

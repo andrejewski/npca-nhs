@@ -1,0 +1,28 @@
+nav
+	.nav-piece.nav-nav
+		.nav-inner
+			ul.list-linear.nav-links
+					li
+						a(href='/') Home
+					li
+						if item.view === 'about.jade'
+							a.selected(href='/about/') About
+						else
+							a(href='/about/') About
+					li
+						a(href='/news/') News
+					li 
+						a(href='/events/') Events
+					li
+						a(href='/members/') Members
+					
+					li.member-login
+						a(href='/account/login') Login
+	.nav-piece
+		.nav-inner
+			header
+				h2 Northwest Pennsylvania Collegiate Academy
+				h1 National Honor Society
+
+			.subnav
+				block subnav

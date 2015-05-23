@@ -1,0 +1,15 @@
+
+extends ./layout
+
+block main
+	article !{post.content}
+
+block subnav
+	ul.list-linear.nav-links
+		- var articles = item.list.posts.sort(function(a,b) {return a.title.charCodeAt(0) - b.title.charCodeAt(0);});
+		for article in articles
+			li
+				if article.title === item.title
+					a.selected(href=article.url)= article.title
+				else
+					a(href=article.url)= article.title

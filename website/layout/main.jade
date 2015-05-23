@@ -1,0 +1,39 @@
+
+extends ./base
+
+block title
+	| Northwest Pennsylvania Collegiate Academy National Honor Society
+
+block body
+	#page
+		.image-mask
+			img.image-fill(src='/assets/images/front-enterance.jpg')
+			.image-face
+				include ./navbar
+
+				.grid.grid-padded.grid-rigid
+					.cell
+						h1= item.title
+						section !{item.content}
+					.cell
+						h4.list-header Society Officers
+						ul.list-linear
+							for peep in g.board
+								li
+									p
+										b= peep.name
+										|  #{peep.title}
+			include ./navbar
+			.grid.grid-padded.grid-rigid
+						.cell
+							h1= item.title
+							section !{item.content}
+						.cell
+							h4.list-header Society Officers
+							ul.list-linear
+								for peep in g.board
+									li
+										p
+											b= peep.name
+											|  #{peep.title}
+	include ./footer

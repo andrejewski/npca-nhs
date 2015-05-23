@@ -1,0 +1,53 @@
+
+/** {box-sizing: border-box; color: #334;}
+html, body {margin: 0px; height: 100%; background-color: #123;}
+
+body {border: none;}
+
+.closure {margin: 0px 20px;}
+nav {background-color: #FFB800; font-size: 16px; margin: 0px; padding: 0px; border: none; box-shadow: 0 2px 100px rgba(0,0,0,0.5); position: relative; z-index: 3;}
+.nav-inner {box-shadow: inset 0 -2px 3px rgba(0,0,0,0.1);}
+nav ul {list-style-type: none; padding: 0; margin: 0;}
+nav ul li {display: inline-block; text-transform: uppercase; font-size: 0.9em;}
+nav ul li a {display: block; padding: 20px 10px; color: #fff; text-decoration: none;}
+nav li:hover a {background-color: rgba(0,0,0,0.1); color: #fff; text-decoration: none;}
+.member-login {float: right;}
+
+table, tbody {height: 100%; width: 100%;}
+td {padding-bottom: 2em;}
+
+#sidebar {position: fixed; top: 60px; right: 0px; width: 180px; margin: 0px auto;}
+.emblem {display: block; width: 140px; margin: 1em auto;}
+.board {opacity: 0.8; text-align: center; font-size: 0.9em;}
+.board ul {list-style-type: none; margin: 0; padding: 0px;}
+.board p {color: rgba(255,255,255,0.5); margin-bottom: 0.5em;}
+.board p b {color: #f8f8f8;}
+
+#overlay {padding: 2em; text-align: center; z-index: 4;}
+#overlay h2 {font-size: 1.8em; margin: 0; font-weight: normal;}
+#overlay h1 {font-size: 3.6em; margin: 0 0 1em; font-weight: normal;}
+#overlay p {font-size: 1.2em; max-width: 440px; margin: 0em auto;}
+
+.left-bottom-corner {position: fixed; top: 56px; right: 180px; bottom: 0; left: 0;}
+
+#slide-deck {}
+.slide {position: absolute; top: 0; bottom: 0; left: 0; right: 0; background-size: cover; opacity: 0.7;}
+
+@media(min-width: 560px) {
+	#overlay h2 {color: #fff; font-size: 1.8em; text-shadow: 0 2px 0px rgba(0,0,0,0.8);}
+	#overlay h1 {color: #fff; font-size: 3.6em; text-shadow: 0 2px 0px rgba(0,0,0,0.8);}
+	#overlay p {color: #f8f8f8; opacity: 0.75; text-shadow: 0 1px 0px rgba(0,0,0,0.8);}
+
+}
+
+@media(max-width: 560px) {
+	nav {font-size: 13px; box-shadow: none;}
+	.closure {margin: 0;}
+	#sidebar {position: static; padding: 2em 0px;}
+	.left-bottom-corner {position: static;}
+	#overlay {background-color: #fff;}
+	#overlay h2 {font-size: 1.4em;}
+	#overlay h1 {font-size: 1.6em;}
+	#slide-deck {display: none;}
+}
+*/

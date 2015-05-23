@@ -1,0 +1,148 @@
+
+* {box-sizing: border-box;}
+html {background-color: #112536;}
+html, body {margin: 0px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;}
+body {font-size: 1em; border-top: 4px solid #FFB800;}
+
+#page {background-color: #fff;}
+.image-mask {position: relative; overflow: hidden;}
+.image-fill {position: absolute; top: 0; right: 0; bottom: 0; left: 0; opacity: 0.3;}
+.image-face {position: absolute; top: 0; right: 0; bottom: 0; left: 0;}
+
+h1 {color: #345; font-size: 3em;}
+h2 {color: #678; font-size: 1.3em; font-weight: 300;}
+h3 {font-size: 1.2em; margin: 0; margin-bottom: 0.5em; color: #234; font-weight: normal;}
+h4 {font-size: 1.1em; margin: 0px; color: #345;}
+p {font-size: 1em; line-height: 1.4; color: #456;}
+
+h1, h3, h4 {margin: 0px;}
+
+h2, p {margin: 0 0 1em 0;}
+h2:last-child {margin: 0;}
+
+a {color: inherit; text-decoration: underline;}
+a:hover {color: #08f; text-decoration: underline;}
+p a {color: #456;}
+
+time, label {font-size: 0.9em; color: #89a;}
+
+pre, code {font-family: 'Source Code Pro';}
+pre {margin: 0 0 1em; white-space: normal; font-size: inherit;}
+pre code {display: block;}
+code {background-color: #def; font-size: 1em;}
+code .highlight {display: block; padding: 1em; overflow-y: auto;}
+code .highlight {}
+code pre {margin: 0; white-space: pre}
+
+figure {margin: 0px;}
+figcaption {padding-top: 10px;}
+img {width: 100%;}
+
+nav {}
+.nav-nav {background-color: rgba(255,255,255,0.75);}
+.nav-piece {padding: 10px 10px;}
+.nav-inner {max-width: 740px; margin: 0px auto;}
+header {font-size: 1.2em; margin: 1.5em 10px;}
+nav header {margin-top: 1em; margin-bottom: 1em;}
+nav header h2 {margin: 0px; color: #567;}
+nav ~ header h1, nav ~ header h2 {text-align: center !important;}
+article, section {margin-bottom: 2.5em;}
+
+footer {padding: 2em 0;}
+footer h4 {color: #D19700;}
+footer p, footer a {color: #678;}
+
+.rel {position: relative;}
+.logo-watermark {position: absolute; z-index: 1; top: 0px; right: 70px; width: 100px; padding-bottom: 1em; opacity: 0.4;}
+
+article {padding: 20px 20px; font-size: 1.2em; text-align: center;}
+article > * {margin-left: auto; margin-right: auto; max-width: 640px; text-align: justify;}
+article img {display: inline-block; max-width: 100%; width: auto; margin: 2em auto; box-shadow: 0 1px 0px rgba(0,0,0,0.1)}
+article img + img {margin-top: 0em;}
+
+.tt_ {-webkit-transition: all 0.2468s ease-in-out; -moz-transition: all 0.2468s ease-in-out; -ms-transition: all 0.2468s ease-in-out; -o-transition: all 0.2468s ease-in-out; transition: all 0.2468s ease-in-out;}
+.ts_ {-webkit-transition: all 0.1246s ease-in-out; -moz-transition: all 0.1246s ease-in-out; -ms-transition: all 0.1246s ease-in-out; -o-transition: all 0.1246s ease-in-out; transition: all 0.1246s ease-in-out;}
+
+.tal {text-align: left !important;}
+.tac {text-align: center !important;}
+.tar {text-align: right !important;}
+
+.grid {display: block; text-align: center; margin: 0px auto;}
+.grid-rigid {}
+.grid-relative {position: relative;}
+.grid-padded {padding: 2em 0 0 0;}
+
+.row {}
+.grid > .row-col-pad-left {margin-left: 370px;}
+
+.col {}
+.grid > .col-row-rel-left {position: absolute; top: 0; left: 0;}
+
+.cell {padding: 10px 20px;}
+.grid > .cell, .grid > .tile, .grid > .col {display: inline-block; vertical-align: top; text-align: left; width: 370px;}
+.grid > .cell-row {display: block; width: auto;}
+
+.caption-overlay {position: relative;}
+.caption-overlay figcaption {display: block; padding: 20px 10px 10px 10px; position: absolute; z-index: 1; top: 0; bottom: 0; left: 0; right: 0; opacity: 0; background-color: rgba(223,239,255,0.5);}
+.caption-overlay figcaption {-webkit-transition: all 0.2468s ease-in-out; -moz-transition: all 0.2468s ease-in-out; -ms-transition: all 0.2468s ease-in-out; -o-transition: all 0.2468s ease-in-out; transition: all 0.2468s ease-in-out;}
+.caption-overlay:hover figcaption {opacity: 1; padding-top: 10px;}
+.caption-overlay:hover picture img {opacity: 0.4; -webkit-filter: grayscale(1); filter: grayscale(1);}
+
+.snap {overflow: hidden;}
+.snap figcaption {width: 330px;}
+.snap picture {display: block; width: 330px; background-color: #def;}
+.snap img {width: 330px;}
+
+.list-header {padding-bottom: 5px; margin-bottom: 10px;}
+.list-linear {padding: 0px; margin: 0px; list-style-type: none;}
+
+.link-block {display: block; cursor: pointer; text-decoration: none !important;}
+.link-block-text {margin: 0 10px; padding: 10px 0; border-top: 1px solid #def;}
+.link-block:hover .link-block-text {border-top-color: #08f;} 
+
+.btn {display: block; font-size: 1.2em; text-align: center; text-decoration: none !important; padding: 15px; border-radius: 3px;}
+.btn-primary {background-color: #48f; color: #fff;}
+.btn-primary:hover {background-color: #37e; color: #fff;}
+
+/* navigation classes */
+.emblem {display: block; width: 140px; margin: 1em auto;}
+
+.nav-links {font-size: 1.1em; color: #678;}
+.nav-links li {display: inline-block;}
+.nav-links a {display: inline-block; padding: 10px 0; margin: 0 10px; text-decoration: none;}
+.nav-links a.selected {color: #123;}
+.subnav {font-size: 0.9em; box-shadow: inset 0 -2px 0 #eee;}
+.subnav a.selected {border-bottom: 3px solid #FFB800;}
+/* /> navigation */
+
+@media(min-width: 370px) {
+	.grid-rigid {width: 370px;}
+}
+
+@media(max-width: 740px) {
+	nav {font-size: 0.8em; text-align: center;}
+	.nav-links a {padding: 10px 0px; margin: 0px 5px;}
+	header {font-size: 0.8em;}
+	/*nav ~ header h1, nav ~ header h2 {text-align: left !important;}*/
+	article {font-size: 1em;}
+	article img {margin: 1em auto;}
+	.grid > .row-col-pad-left {margin: 0px;}
+	.grid > .col-row-rel-left {position: static;}
+	.caption-overlay figcaption {background-color: #fff; position: static; opacity: 1; padding: 10px 0 0 0;}
+	.caption-overlay:hover picture img {opacity: 1; -webkit-filter: none;}
+
+	.image-fill {display: none;}
+	footer {margin: 2em 0;}
+}
+
+@media(min-width: 740px) {
+	.grid-rigid {width: 740px;}
+
+}
+
+.cell-empty {display: none !important;}
+/*@media(min-width: 1280px) {
+	.grid-rigid {width: 1280px;}
+	.cell-empty {display: inline-block !important;}
+}*/
+

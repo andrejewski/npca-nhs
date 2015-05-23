@@ -1,0 +1,30 @@
+{
+  "name": "npca-nhs",
+  "version": "1.0.0",
+  "description": "Collegiate Academy National Honor Society",
+  "main": "index.js",
+  "scripts": {
+    "build-site": "reem --dir website",
+    "serve-site": "http-server website/output",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrejewski/npca-nhs.git"
+  },
+  "keywords": [
+    "npca",
+    "nhs",
+    "collegiate"
+  ],
+  "author": "Chris Andrejewski <christopher.andrejewski@gmail.com>",
+  "license": "GNU V2",
+  "bugs": {
+    "url": "https://github.com/andrejewski/npca-nhs/issues"
+  },
+  "homepage": "https://github.com/andrejewski/npca-nhs",
+  "dependencies": {
+    "reem": "^0.0.5",
+    "reem-markdown": "^0.1.0"
+  }
+}
