@@ -1,0 +1,67 @@
+
+extends ../application
+
+block title
+	| #{event.title}
+
+block document
+	.document.paper
+		article.event
+				.section.section-header
+					header
+						- var date = event.published ? event.publishedAt : event.createdAt;
+						time
+							if !event.published
+								| Draft &bull; 
+							span(style='color:'+event.committeeColor+';') #{capitalize(event.committee)}
+							|  &bull; 
+							.octicon-tab
+								span.octicon.octicon-calendar
+							|  #{humanDatetime(date)}
+						h1 #{event.title}
+						h2 #{event.subtitle}
+					.pamphlet
+						.content !{event.content}
+				if pov.isPro
+					.section
+						.btn-group
+							a(href='/events/'+event._id+'/edit').btn.btn-info 
+								.octicon-tab
+									span.octicon.octicon-pencil
+								| Edit Event
+							a(href='/events/'+event._id+'/create_time').btn.btn-primary
+								.octicon-tab
+									span.octicon.octicon-plus
+								| Add an Event Time
+							a(href='/events/'+event._id+'/delete').btn.btn-danger 
+								.octicon-tab
+									span.octicon.octicon-trashcan
+								| Delete
+	.document.paper
+		.section.section-header
+			h3 
+				.mega-octicon-tab
+					span.mega-octicon.octicon-clock
+				| Event Times
+		if times.length
+			for time in times
+				.section
+					include ../time/_time_range
+					h3 
+						a(href='/events/times/'+time._id) #{time.title}
+					if time.attendeeCount != 0
+						p
+							| #{time.attendeeCount} 
+							if time.capacity && !time.past
+								| / #{time.capacity} 
+							if time.past
+								| #{time.attendeeCount === 1 ? "member" : "members"} attended.
+							else
+								| #{time.attendeeCount === 1 ? "member is" : "members are"} attending.
+					else if !time.past
+						p No members have confirmed they are attending yet.
+							
+
+		else
+			.section
+				p There are no times listed..yet.

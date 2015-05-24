@@ -1,0 +1,46 @@
+
+extends ../application
+
+block title
+	| Admin Controls
+
+block document
+	.pamphlet.paper
+		.section.section-header
+			h1 
+				.mega-octicon-tab
+					span.mega-octicon.octicon-circuit-board
+				| Admin Controls
+		.section
+			a(href='/admin/news/')
+				h3 
+					.mega-octicon-tab
+						span.mega-octicon.octicon-megaphone
+					| Announce Something
+		.section
+			a(href='/events/')
+				h3 
+					.mega-octicon-tab
+						span.mega-octicon.octicon-calendar
+					| Create an Event
+		if pov.isAdmin
+			.section
+				a(href='/admin/members/create')
+					h3 
+						.mega-octicon-tab
+							span.mega-octicon.octicon-organization
+						| Register Members
+		.section
+			a(href='/admin/members/service-sheet/'+(new Date).getFullYear())
+				h3 
+					.mega-octicon-tab
+						span.mega-octicon.octicon-book
+					| Service Records
+		if pov.isSuper
+			.section
+				a(href='/admin/settings')
+					h3 
+						.mega-octicon-tab
+							span.mega-octicon.octicon-settings
+						| Website Settings
+

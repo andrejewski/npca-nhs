@@ -1,0 +1,64 @@
+
+extends ../application
+
+block title
+	| Recording #{time.title}
+
+block document
+	.document.paper
+		.section
+			a(href='/events/times/'+time._id).btn.btn-default 
+				.octicon-tab
+					span.octicon.octicon-arrow-left
+				| Return to Event Time
+
+		.section.section-header
+			h1= time.title
+			p Member Attendance Sheet
+
+		if time.commits.length
+			form(method='post')
+				.section
+					if recordError
+						.banner.banner-failure
+							p 
+								span.octicon.octicon-alert
+								|  #{recordError}
+					table
+						thead
+							tr
+								th
+									label Member
+								th
+									label(title='Attended')
+										.octicon-tab.tac
+											span.octicon.octicon-eye
+								th
+									label Hours
+								th
+									label Details (optional)
+						tbody
+							for commit,i in time.commits
+								tr
+									td
+										input(type='hidden', name='commits['+i+'][id]', value=commit._id)
+										p 
+											a(href='/members/'+commit.user._id)= commit.user.name
+									td
+										if commit.attended
+											input(type='checkbox', name='commits['+i+'][attended]', value='yes', checked)
+										else
+											input(type='checkbox', name='commits['+i+'][attended]', value='yes')
+									td(style='width: 70px')
+										input.textbox(type='number', name='commits['+i+'][hours]', placeholder=pov.classOf, value=commit.hours || time.potentialHours)
+									td
+										textarea.textbox(type='text', name='commits['+i+'][detail]', placeholder="What "+firstName(commit.user.name)+" did ...", rows='1') #{commit.leadText}
+									
+					.input-row
+						input.btn.btn-success(type='submit', value="Save Attendance")
+		else
+			.section
+				p.
+					Unfortunately, no one signed up for this event time.
+					Fortunately, attendence keeping for this event time just got a whole lot easier.
+

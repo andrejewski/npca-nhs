@@ -1,0 +1,5 @@
+Hello *|NAME|*,
+
+Welcome to the Northwest Pennsylvania Collegiate Academy chapter of the National Honor Society. Your temporary password is: *|PASSWORD|*
+
+Please login into your account at *|DOMAIN|* and change your password to something more memorable.

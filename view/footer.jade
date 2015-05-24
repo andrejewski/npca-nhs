@@ -1,0 +1,62 @@
+//- footer.jade
+
+footer
+	.grid.grid-rigid
+		.cell
+			h4 Northwest Pennsylvania Collegiate Academy National Honor Society
+			p Founded in 1998 as an official branch of the National Honor Society.
+		.cell.rel
+			img(src='/assets/images/nhs-emblem-white.png').logo-watermark
+			h4 Contact our Society
+			p
+				a(href='mailto:npca.nhs@gmail.com') npca.nhs@gmail.com
+		if authed
+			.cell
+			.cell
+			.cell
+				p 
+					| You are logged in as 
+					a(href='/members/'+pov._id) #{pov.name}
+					| . &#32;&#32;
+					br
+					a(href='/account/logout') 
+						span.octicon-tab
+							span.octicon.octicon-sign-out
+						| Logout
+			.cell
+
+
+//- footer
+	.document
+		.section
+			p
+				a(href='/') 
+					span.octicon-tab
+						span.octicon.octicon-home
+					| Home
+				| &#32;&bull;&#32;
+				a(href='/news/') News
+				| &#32;&bull;&#32;
+				a(href='/events/') Events
+				| &#32;&bull;&#32;
+				a(href='/members/') Members
+				if authed && pov.isAdmin
+					| &#32;&bull;&#32;
+					a(href='/admin/') Admin
+
+			.commit
+				.commit-icon
+					span.mega-octicon-tab
+						span.mega-octicon.octicon-quote
+				.commit-body !{g.markdown_footer}
+
+			if authed
+				p 
+					| You are logged in as 
+					a(href='/members/'+pov._id) #{pov.name}
+					| . &#32;&#32;
+					a(href='/account/logout') 
+						span.octicon-tab
+							span.octicon.octicon-sign-out
+						| Logout
+

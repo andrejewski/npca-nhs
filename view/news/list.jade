@@ -1,0 +1,58 @@
+
+extends ../application
+
+block title
+	| NHS Announcements
+
+block document
+	if drafts
+		.pamphlet.paper
+			.section.section-header
+				h3 
+					.mega-octicon-tab
+						span.mega-octicon.octicon-diff
+					| Announcement Drafts
+			.section
+				a(href='/admin/news/create').btn.btn-bar.btn-info
+					.octicon-tab
+						span.octicon.octicon-plus
+					| Create a new Announcement
+			if drafts.length
+				for story in drafts
+					.section
+						- var date = story.published ? story.publishedAt : story.createdAt;
+						time
+							span(style='color:'+story.committeeColor+';') #{capitalize(story.committee)}
+							|  &bull; 
+							.octicon-tab
+								span.octicon.octicon-calendar
+							|  #{humanDatetime(date)}
+						h1 
+							a(href='/news/'+story._id) #{story.title}
+						p #{story.subtitle}
+			else
+				.section
+					p There are no drafts..yet.
+
+	.pamphlet.paper
+		.section.section-header
+			h3 
+				.mega-octicon-tab
+					span.mega-octicon.octicon-megaphone
+				| News and Announcements
+		if stories.length
+			for story in stories
+				.section
+					- var date = story.publishedAt;
+					time
+						span(style='color:'+story.committeeColor+';') #{capitalize(story.committee)}
+						|  &bull; 
+						.octicon-tab
+							span.octicon.octicon-calendar
+						|  #{humanDatetime(date)}
+					h1 
+						a(href='/news/'+story._id) #{story.title}
+					p #{story.subtitle}
+		else
+			.section
+				p There are no announcements..yet.

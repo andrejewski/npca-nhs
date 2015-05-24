@@ -1,0 +1,149 @@
+
+extends ../application
+
+block title
+	| Admin Controls
+
+block document
+	.pamphlet.paper
+		.section.section-header
+			h1 
+				.mega-octicon-tab
+					span.mega-octicon.octicon-settings
+				| Website Settings
+			p.
+				For any changes made here to reflect, the app needs to be restarted.
+		//- form(method='post').section
+			input(type='hidden', name='form', value='general')
+			h2 
+				.mega-octicon-tab
+					span.mega-octicon.octicon-info
+				| General
+		form(method='post').section
+			input(type='hidden', name='form', value='school')
+			h2 
+				.mega-octicon-tab
+					span.mega-octicon.octicon-light-bulb
+				| School
+			.input-row
+				label(for='school-name') Name
+				input#school-name.textbox(type='text', name='name', value=config.school.name, placeholder="Xavier's School for Gifted Youngsters")
+			.input-row
+				label(for='school-year-begin') Year Begins
+				input#school-year-begin.textbox(type='text', name='yearBegin', value=config.school.yearBegin, placeholder=new Date())
+			.input-row
+				label(for='school-year-end') Year Ends
+				input#school-year-end.textbox(type='text', name='yearEnd', value=config.school.yearEnd, placeholder=new Date())
+			.input-row
+				label(for='school-timezone') Timezone Offset
+				input#school-timezone.textbox(type='number', name='timezoneOffset', value=config.school.timezoneOffset, placeholder="240")
+			.input-row
+				input.btn.btn-success(type='submit', value='Update School Settings')
+
+		form(method='post').section
+			input(type='hidden', name='form', value='website')
+			h2 
+				.mega-octicon-tab
+					span.mega-octicon.octicon-globe
+				| Website
+			.input-row
+				label(for='website-domain') Domain
+				input#website-domain.textbox(type='text', name='domain', value=config.website.domain, placeholder='nhswebsite.com')
+			.input-row
+				label(for='website-author') Author
+				input#website-author.textbox(type='text', name='author', value=config.website.author, placeholder='Maintainer of Website')
+			.input-row
+				label(for='website-description') Description
+				textarea#website-description.textbox(type='text', rows=4, name='description', placeholder='This is the official website of the NHS branch of '+config.school.name)= config.website.description
+			.input-row
+				label(for='website-header') Header Title
+				input#website-header.textbox(type='text', name='header', value=config.website.header, placeholder='National Honor Society of '+config.school.name)
+			.input-row
+				label(for='website-footer') Footer Markdown
+				textarea#website-footer.textbox(type='text', rows=4, name='footer', placeholder='This **text** will show up on the bottom of all webpages.')= config.website.footer
+			.input-row
+				label(for='website-keywords') Keywords (comma-separated)
+				input#website-keywords.textbox(type='text', name='keywords', value=config.website.keywords.join(", "), placeholder='national, honor, society, homepage')
+			.input-row
+				input.btn.btn-success(type='submit', value='Update Website Settings')
+
+		//- form(method='post').section
+			input(type='hidden', name='form', value='email')
+			h2 
+				.mega-octicon-tab
+					span.mega-octicon.octicon-mail
+				| Email System
+			.input-row
+				label(for='email-service') Service
+				input#email-service.textbox(type='text', name='service', value=config.email.service, placeholder="Gmail")
+				p.details
+					| For complete options visit the 
+					a(href='http://www.nodemailer.com/docs/smtp') Nodemailer documentation
+					| .
+			.input-row
+				label(for='email-username') Username
+				input#email-username.textbox(type='text', name='username', value=config.email.username, placeholder="nhsbot@gmail.com")
+			.input-row
+				label(for='email-password') Password
+				input#email-password.textbox(type='text', name='password', value=config.email.password, placeholder="beepbopboop")
+			.input-row
+				input.btn.btn-success(type='submit', value='Update School Settings')
+
+		form(method='post').section
+			input(type='hidden', name='form', value='mandrill')
+			h2 
+				.mega-octicon-tab
+					span.mega-octicon.octicon-mail
+				| Email System
+			.input-row
+				label(for='mandrill-apiKey') Mandrill API Key
+				input#mandrill-apiKey.textbox(type='text', name='apiKey', value=config.mandrill.apiKey, placeholder="BlaBlaBlaBla")
+			.input-row
+				label(for='mandrill-address') Email Address
+				input#mandrill-address.textbox(type='text', name='address', value=config.mandrill.address, placeholder="nhsbot@gmail.com")
+			.input-row
+				label(for='mandrill-sender') Sender Name
+				input#mandrill-sender.textbox(type='text', name='sender', value=config.mandrill.sender, placeholder="National Honor Society")
+			.input-row
+				label(for='mandrill-sendHour') Send Hour
+				input#mandrill-sendHour.textbox(type='number', name='sendHour', value=config.mandrill.sendHour, placeholder="12")
+			.input-row
+				input.btn.btn-success(type='submit', value='Update Email Settings')
+
+
+
+		//- form(method='post').section
+			input(type='hidden', name='form', value='administration')
+			h2 
+				.mega-octicon-tab
+					span.mega-octicon.octicon-law
+				| Administration
+		.section
+			h2 
+				.mega-octicon-tab
+					span.mega-octicon.octicon-terminal
+				| Controls
+			//- form(method='post').half-group
+				input(type='hidden', name='form', value='db_mutex')
+				.half
+					p.details
+						span.octicon.octicon-lock 
+						|  Locking disables this app from writing, updating, or creating data in the database.
+						| This is intended for use against cyber attacks or user riots. 
+				.half
+					.closure
+						if false 
+							//- settings.database.locked
+							input(type='submit', value='Unlock the Database').btn.btn-bar.btn-success
+						else
+							input(type='submit', value='Lock the Database').btn.btn-bar.btn-danger
+
+			form(method='post').half-group
+				input(type='hidden', name='form', value='restart')
+				.half
+					p.details
+						span.octicon.octicon-plug 
+						|  Restarting the NHS app is equivelent to killing it, just that it auto-restarts. 
+				.half
+					.closure
+						input(type='submit', value='Restart the NHS App').btn.btn-bar.btn-danger

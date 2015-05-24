@@ -1,0 +1,20 @@
+
+extends ../layout
+
+block title
+	| Access Denied
+
+block app
+	.closure
+		.container
+			.pamphlet
+				.error-message
+					.section.tac
+						h1
+							span.mega-octicon-tab
+								span.mega-octicon.octicon-stop
+							|  You Shall Not Pass
+						h2 HTTP 403 Forbidden
+						.mini
+							p.
+								You do not have the permissions required to access this page.

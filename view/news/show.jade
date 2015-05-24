@@ -1,0 +1,35 @@
+
+extends ../application
+
+block title
+	| #{story.title}
+
+block document
+	.document.paper
+		article.news
+			.section.section-header
+				header.tac
+					- var date = story.published ? story.publishedAt : story.createdAt;
+					time
+						if !story.published
+							| Draft &bull; 
+						span(style='color:'+story.committeeColor+';') #{capitalize(story.committee)}
+						|  &bull; 
+						.octicon-tab
+							span.octicon.octicon-calendar
+						|  #{humanDatetime(date)}
+					h1 #{story.title}
+					h2 #{story.subtitle}
+				.pamphlet
+					.content !{story.content}
+			if pov.isPro
+				.section
+					.btn-group
+						a(href='/news/'+story._id+'/edit').btn.btn-info 
+							.octicon-tab
+								span.octicon.octicon-pencil
+							| Edit Announcement
+						a(href='/news/'+story._id+'/delete').btn.btn-danger 
+							.octicon-tab
+								span.octicon.octicon-trashcan
+							| Delete

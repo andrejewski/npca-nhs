@@ -1,0 +1,8 @@
+{
+	"name": "Welcome",
+	"subject": "Welcome to the National Honor Society!",
+	"labels": ["account"],
+	"conf_merge_tags": [["website.domain", "domain"]],
+	"user_merge_tags": ["name", "password"],
+	"item_merge_tags": []
+}

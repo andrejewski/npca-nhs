@@ -1,0 +1,26 @@
+
+extends ../application
+
+block title
+	| Delete "#{event.title}"?
+
+block document
+	.document.paper
+		article.event
+			.section
+				header
+					h1 #{event.title}
+					h2 #{event.subtitle}
+				.pamphlet
+					.content !{event.content}
+			.section
+				.pamphlet
+					form(method='post')
+						p.
+							Do not delete events that you are done with. 
+							They need to say on record for volunteer hours to be associated to any given event. 
+						p Are you sure you want to delete this event?
+						input(type='hidden', name='action', value='delete')
+						.btn-group
+							a.btn.btn-primary(href='/events/'+event._id) Never Mind
+							input.btn.btn-danger(type='submit', value='Yes, Destroy It.')

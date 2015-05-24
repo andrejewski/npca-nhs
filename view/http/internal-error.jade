@@ -1,0 +1,21 @@
+
+extends ../layout
+
+block title
+	| Internal Server Error
+
+block app
+	.closure
+		.container
+			.pamphlet
+				.error-message
+					.section.tac
+						h1
+							span.mega-octicon-tab
+								span.mega-octicon.octicon-bug
+							|  Something went Wrong and It is not Your Fault
+						h2 HTTP 500 Internal Server Error
+						.mini
+							p.
+								There was a bug, glitch, error, or other such problem with the server.
+								We are on the case. If the error persists, contact superheroes.

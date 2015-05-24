@@ -1,0 +1,44 @@
+
+extends ../layout
+
+block title
+	| Editing #{story.title}
+
+block head
+	link(rel='stylesheet', href='/assets/stylesheets/editor-app.css', type='text/css')
+
+block base
+	script(type='text/javascript', src='/assets/scripts/epiceditor.min.js')
+	script(type='text/javascript', src='/assets/scripts/editor-app.js')
+
+block app
+	form(method='post')
+		#editor-controls
+			.editor-toolbar
+				.editor-toolbar-left
+					a(href='/news/'+story._id).btn.btn-default 
+						.octicon-tab
+							span.octicon.octicon-arrow-left
+						| Return to Story
+
+				.editor-toolbar-right
+					input.btn.btn-primary(type='submit', name='action', value='Save Accouncement')
+					if !story.published
+						input.btn.btn-success(type='submit', name='action', value='Publish')
+		#writing-area
+			header
+				time
+					span Committee: 
+					select(name='committee')
+						for committee in committeeList
+							if committee === story.committee
+								option(value=committee, selected)= capitalize(committee)
+							else
+								option(value=committee)= capitalize(committee)
+				h1
+					input.varUI(type='text', name='title', value=story.title, placeholder="New Accouncement Title", required)
+				h2
+					input.varUI(type='text', name='subtitle', value=story.subtitle, placeholder="With an Optional Subtitle")
+			#epiceditor
+				textarea(placeholder='Write your words here..') #{story.text}
+			input#textbox(type='hidden', name='text', value=story.text)

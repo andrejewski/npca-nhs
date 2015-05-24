@@ -1,0 +1,14 @@
+{
+	"name": "Commit Notification",
+	"subject": "Event Reminder",
+	"labels": ["event", "notification"],
+	"conf_merge_tags": [["website.domain", "domain"]],
+	"user_merge_tags": [
+		"name",
+		["time.humanTime", "start_time"],
+		["time.humanDate", "start_date"],
+		["time.title", "time_title"],
+		["time.event.title", "event_title"]
+	],
+	"item_merge_tags": []
+}

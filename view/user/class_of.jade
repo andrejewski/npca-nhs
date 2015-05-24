@@ -1,0 +1,74 @@
+
+extends ../application
+
+block title
+	| Class of #{year}
+
+block base
+	script(src='/assets/scripts/sorttable.js')
+
+block document
+	.document.paper
+		.document-layout
+			.section.section-header.section-header-navbar
+				h1 
+					.mega-octicon-tab
+						span.mega-octicon.octicon-organization
+					| Members of #{year}
+				.section-header-right-nav
+					.btn-group
+						.segmented-control
+							for yr in yearSpan
+								if yr === year
+									a.segmented-option.segmented-option-selected(href='/members/class-of/'+yr+'/all') #{yr}
+								else
+									a.segmented-option(href='/members/class-of/'+yr+'/all') #{yr}
+					if pov.isAdmin
+						.btn-group
+							a.btn.btn-primary(href='/admin/members/create') 
+								.btn-icon
+									span.octicon.octicon-plus
+								| Add Members
+							
+			.section
+				if users.length
+					table.table-member.sortable
+						thead
+							tr
+								th Name
+								th Committee
+								th Title
+								th College
+								
+						tbody
+							for user in users
+								tr.table-member-row
+									td.table-member-name
+										a(href='/members/'+user._id)= user.name
+									td= capitalize(user.committee)
+									td= user.title
+
+									if user.college && user.college.length > 20
+										td= user.college.slice(0, 18) + ".."
+									else
+										td= user.college 
+									
+				else
+					p There are no members in this class.
+			//- .side-bar
+				.section
+					.option-group
+						label Year 
+						ul
+							for yr in yearSpan
+								li
+									a(href='/members/class-of/'+yr+'/all') Class of #{year}
+				if seniorClass
+					.section
+						.option-group
+							label Role
+							ul
+								for rr in rankSpan
+									li
+										a(href='/members/class-of/'+year+'/'+rr[0]) #{rr[1]} 
+

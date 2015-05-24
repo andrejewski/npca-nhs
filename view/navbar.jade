@@ -1,0 +1,73 @@
+
+nav
+	.nav-piece.nav-nav
+		.nav-inner
+			ul.list-linear.nav-links
+					li
+						a(href='/') Home
+					li
+						a(href='/about/') About
+					li
+						a(href='/news/') News
+					li 
+						a(href='/events/') Events
+					li
+						a(href='/members/') Members
+					li
+						if authed
+							a(href='/members/'+pov._id) Profile
+						else
+							a(href='/account/login') Login
+					if authed && pov.isPro
+						li
+							a(href='/admin/') Admin
+	.nav-piece
+		.nav-inner
+			header
+				h2 Northwest Pennsylvania Collegiate Academy
+				h1 National Honor Society
+
+			.subnav
+				block subnav
+
+
+//-nav#navbar
+	.navbar-header
+		.closure
+			.document.rel
+				a(href='/').menu-item.navbar-namespace
+					//- .navbar-logo
+						img(src='/img/nhs-app-logo.png', alt=g.appName).logo.logo-center
+					.navbar-appname
+						h1= g.header
+				.navbar-navigation
+					ul.navbar-menu
+						block navbarMenu
+								li.menu-item
+									
+									a(href='/news/') 
+										span.nav-icon.xl-only
+											span.mega-octicon.octicon-megaphone
+										| News
+								li.menu-item
+									a(href='/events/') 
+										span.nav-icon.xl-only
+											span.mega-octicon.octicon-calendar
+										| Events
+								li.menu-item
+									a(href='/members/') 
+										span.nav-icon.xl-only
+											span.mega-octicon.octicon-organization
+										| Members
+							if authed
+								li.menu-item
+									a(href='/members/'+pov._id) 
+										span.nav-icon.xl-only
+											span.mega-octicon.octicon-mention
+										| Profile
+							else
+								li.menu-item
+									a(href='/account/login') 
+										span.nav-icon.xl-only
+											span.mega-octicon.octicon-sign-in
+										| Login

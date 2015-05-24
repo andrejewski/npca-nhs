@@ -1,0 +1,67 @@
+
+extends ../application
+
+block title
+	| #{time.title}
+
+block document
+	.pamphlet.paper
+		article.time
+				.section.section-header
+					header
+						include ./_time_range
+						h1 #{time.title}
+						if time.volunteered
+							p
+								b #{time.potentialHours}
+								|  potential volunteer #{time.potentialHours === 1 ? "hour" : "hours"}.
+						if time.attending && time.past
+							p You attended this event.
+						else if time.attending && !time.past
+							p You are attending.
+							.meta-btn-group
+								a(href='/events/times/'+time._id+'/disregard').btn.btn-danger Disregard Event
+						else if time.joinable && time.published
+							if authed
+								p 
+								.meta-btn-group
+									a(href='/events/times/'+time._id+'/attend').btn.btn-success Attend Event
+							else
+								p 
+								.meta-btn-group
+									a(href='/account/login').btn.btn-success Login to Attend this Event
+						else if time.past
+							p This event time has already past.
+						else
+							p This event time's capacity has been met.
+				if pov.isPro
+					.section
+						.btn-group
+							if time.past
+								a(href='/events/times/'+time._id+'/record').btn.btn-primary
+									.octicon-tab
+										span.octicon.octicon-checklist
+									| Record Attendance
+							else
+								a(href='/events/times/'+time._id+'/edit').btn.btn-info 
+									.octicon-tab
+										span.octicon.octicon-pencil
+									| Edit Time
+							a(href='/events/times/'+time._id+'/delete').btn.btn-danger 
+								.octicon-tab
+									span.octicon.octicon-trashcan
+								| Delete
+				.section
+					if time.commits.length
+						for commit in time.commits
+							if !time.past || (time.past && commit.attended)
+								p 
+									a(href='/members/'+commit.user._id)= commit.user.name
+									if commit.attended
+										|  attended.
+									else
+										|  is attending.
+					else if time.past
+						p No one scheduled to attend this event time.
+					else
+						p No one has scheduled to attend this event time yet.

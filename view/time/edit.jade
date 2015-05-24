@@ -1,0 +1,53 @@
+
+extends ../application
+
+block title
+	| Editing #{time.title}
+
+block head
+	link(rel='stylesheet', href='/assets/stylesheets/owen-pikaday.css', type='text/css')
+
+block base
+	script(type='text/javascript', src='/assets/scripts/owen-pikaday.js')
+	script(type='text/javascript', src='/assets/scripts/pick-times-app.js')
+
+block document
+	.pamphlet.paper
+		.section
+			a(href='/events/times/'+time._id).btn.btn-default 
+				.octicon-tab
+					span.octicon.octicon-arrow-left
+				| Return to Event Time
+
+		.section
+			form(method='post')
+				.input-row
+					label(for='title') Title
+					input#title.textbox(type='text', name='title', value=time.title, placeholder="New Event Time Title", required)
+				.input-row
+					label(for='start') Start
+					input#start.textbox(type='text', name='start', value=time.startDate, readonly)
+				.input-row
+					label(for='end') End
+					input#end.textbox(type='text', name='end', value=time.endDate, readonly)
+				.input-row
+					label(for='capacity') Capacity, if zero there is no limit
+					input#capacity.textbox(type='number', min=0, default=0, name='capacity', value=time.capacity)
+				.meta-input-row
+					.checkbox
+						if time.volunteered
+							input#volunteer(type='checkbox', name='volunteered', value='yes', checked)
+						else
+							input#volunteer(type='checkbox', name='volunteered', value='yes')
+						label(for='volunteer')
+					label.checkbox-label(for='volunteer') Counts toward volunteering hours
+				.meta-input-row
+					.checkbox
+						if time.published
+							input#publish(type='checkbox', name='publish', value='yes', checked)
+						else
+							input#publish(type='checkbox', name='publish', value='yes')
+						label(for='publish')
+					label.checkbox-label(for='publish') Publish
+				.meta-input-row
+					input.btn.btn-success(type='submit', value='Save Event Time')

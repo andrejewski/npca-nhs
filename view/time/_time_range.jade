@@ -1,0 +1,21 @@
+if time.startDate && time.endDate
+	- var humanStart = humanDate(time.startDate);
+	if humanStart === humanDate(time.endDate)
+		time #{humanStart} from #{humanTime(time.startDate)} to #{humanTime(time.endDate)}
+	else
+		.date-range
+			.dib-mid.tar
+				- var date = time.startDate;
+				time 
+					| #{humanDate(date)}
+					br
+					| #{humanTime(date)}
+			.dib-mid.tac
+				.mega-octicon-tab
+					span.mega-octicon.octicon-git-commit
+			.dib-mid.tal
+				- var date = time.endDate;
+				time 
+					| #{humanDate(date)}
+					br
+					| #{humanTime(date)}

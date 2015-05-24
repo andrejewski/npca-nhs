@@ -1,0 +1,34 @@
+
+extends ../application
+
+block title
+	| Account Login
+
+block document
+	.pamphlet.paper
+		.section.section-header
+				h3 
+					.mega-octicon-tab
+						span.mega-octicon.octicon-sign-in
+					| Sign In
+		.section
+			if loginErrorMessage
+				.banner.banner-failure
+					p 
+						span.octicon.octicon-alert
+						|  #{loginErrorMessage}
+			form(method='post')
+				.input-row
+					label(for='email')
+						span.octicon.octicon-mail
+						|  Email address
+					input#email.textbox(type='text', name='email', required, placeholder=fake.email, value=loginEmail)
+				.input-row
+					label(for='password') 
+						span.octicon.octicon-key
+						|  Password
+					input#password.textbox(type='password', name='password', required, placeholder=fake.password)
+					p.details
+						a(href='/account/password_reset') Forgot your password?
+				.input-row
+					input.btn.btn-success(type='submit', value='Enter the National Honor Society')

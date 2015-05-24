@@ -1,0 +1,126 @@
+
+extends ../application
+
+block title
+	| Editing #{user.name}
+
+block document
+	.pamphlet.paper
+		.section.section-header
+			h1 
+				.mega-octicon-tab
+					span.mega-octicon.octicon-mention
+				| #{user.name}
+		.section
+			h3 Update Profile
+			if editSuccessful
+				.banner.banner-inform
+					p The profile information was successfully updated.
+			form(method='post')
+				input(type='hidden', name='form', value='information')
+				.input-row
+					label(for='fullname') Full name
+					if(user.canEditProp('name'))
+						input#fullname.textbox(type='text', required, name='name', value=user.name)
+					else
+						input#fullname.textbox(type='text', disabled, value=user.name)
+				.input-row
+					label(for='email') Email address
+					if(user.canEditProp('email'))
+						input#email.textbox(type='text', required, name='email', value=user.email)
+					else
+						input#email.textbox(type='text', disabled, value=user.email)
+				if user.canEditProp('role') && pov.role >= user.role
+					.input-row
+						label(for='role') Role
+						select#role(name='role')
+							for roleName, i in ["Member", "Committee Head", "Officer", "Administrator"]
+								- var c = i + 1
+								if pov.role >= c 
+									if user.role === c
+										option(value=c, selected)= roleName
+									else
+										option(value=c)= roleName
+							if pov.isSuper
+								if user.role === 5
+									option(value=5, selected) CTO
+								else
+									option(value=5, disabled) CTO
+				.input-row
+					label(for='committee') Committee
+					if user.canEditProp('committee')
+						select#committee(name='committee')
+							for committee in committeeList
+								if committee === user.committee
+									option(value=committee, selected)= capitalize(committee)
+								else
+									option(value=committee)= capitalize(committee)
+					else
+						input#committee.textbox(type='text', disabled, value=capitalize(user.committee))
+				
+				if user.title || user.canEditProp('title')
+					.input-row
+						if(user.canEditProp('title'))
+							label(for='title') Title
+							input#title.textbox(type='text', name='title', value=user.title)
+						else
+							if user.title
+								input#title.textbox(type='text', disabled, value=user.title)
+				.input-row
+					label(for='classOf') Class of 
+					if(user.canEditProp('classOf'))
+						input#classOf.textbox(type='number', name='classOf', value=user.classOf)
+					else
+						input#classOf.textbox(type='number', disabled, value=user.classOf)
+				.input-row
+					label(for='desc') Short biography
+					if(user.canEditProp('desc'))
+						textarea#desc.textbox(type='text', name='desc') #{user.desc}
+					else
+						textarea#desc.textbox(type='text', disabled) #{user.desc}
+				if user.canEditProp('hours')
+					.input-row
+						label(for='hours') Preexisting Hours
+						input#hours.textbox(type='number', name='hours', value=user.hours || 0)
+				if user.canEditProp('college')
+					.input-row
+						label(for='college') College
+						input#college.textbox(type='text', name='college', value=user.college)
+				if user.canEditProp('bad')
+					.input-row
+						label 
+							if user.bad
+								input(type='checkbox', name='bad', value='yes', checked)
+							else 
+								input(type='checkbox', name='bad', value='yes')
+							| Member is in bad standing
+				.input-row
+					input.btn.btn-success(type='submit', value='Update Profile Information')
+		if(user.canEditProp('password'))
+			.section
+				h3 Change Password
+				if changePasswordError
+					.banner.banner-failure
+						p #{changePasswordError}
+				if changePasswordSuccess
+					.banner.banner-inform
+						p Your password has been changed.
+				form(method='post')
+					input(type='hidden', name='form', value='password')
+					.input-row
+						label(for='current') Current Password
+						input#current.textbox(type='password', required, name='current', value=loginEmail)
+					.input-row
+						label(for='desired') Desired Password
+						input#desired.textbox(type='password', required, name='desired')
+					.input-row
+						input.btn.btn-success(type='submit', value='Change Password')
+		if pov.isPro
+			.section
+				.btn-group
+					a(href='/members/'+user._id+'/delete').btn.btn-danger 
+						.octicon-tab
+							span.octicon.octicon-trashcan
+						| Delete member
+
+

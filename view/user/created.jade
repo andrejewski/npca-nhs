@@ -1,0 +1,40 @@
+
+extends ../layout
+
+block title
+	| Registered Members
+
+block app
+	.document.paper
+		.section.section-header
+			h1 Registered Members
+			p.
+				The members listed below have been sent an email containing a password.
+				They will now be able to login to NHS.
+
+
+		.section
+			table
+				thead
+					tr
+						th
+							label Full name
+						th
+							label Email address
+						th
+							label Class
+				tbody
+					for user in users
+						tr
+							td
+								a(href='/members/'+user._id)
+									p= user.name 
+							td
+								p= user.email
+							td(style='width: 100px')
+								p= user.classOf
+
+	include ../footer
+
+
+

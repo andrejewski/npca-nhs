@@ -1,0 +1,87 @@
+
+extends ../application
+
+block title
+	| #{user.name}
+
+block document
+	.pamphlet.paper
+		- var first = firstName(user.name)
+		.section.section-header
+			h1 
+				.mega-octicon-tab
+					span.mega-octicon.octicon-mention
+				| #{user.name}
+		.section
+			h3 
+				if user.title 
+					| #{user.title} &bull; 
+				if user.committee === 'board'
+					| Board Member
+				else
+					| #{capitalize(user.committee)} Committee
+
+			p
+				if user.classOf
+					i 
+						a(href='/members/class-of/'+user.classOf) Class of #{user.classOf || 3000}
+					| &mdash;
+				| #{user.desc || "A proud member of NHS."}
+
+			
+			p 
+				if user.college
+					| College: #{user.college}
+					br
+				if authed				
+					| Email: 
+					a(href='mailto:'+user.email, target='_blank') #{user.email}
+			
+			if user.canEdit
+				if user.bad
+					p.text-danger #{first} is not in good standing.
+				.btn-group
+					a(href='/members/'+user._id+'/edit').btn.btn-info 
+						.octicon-tab
+							span.octicon.octicon-pencil
+						| Edit Profile Information
+					
+		.section
+			.commit
+				.commit-icon
+					span.mega-octicon-tab
+						span.mega-octicon.octicon-hourglass
+				p.commit-body 
+					| #{first}  has completed 
+					b= user.volunteerHours + (user.hours || 0)
+					|  hours of volunteer work.
+			
+			
+			for commit in user.commits
+				- var timePast = !commit.time || (new Date()) > commit.time.endDate
+				if timePast && commit.attended
+					.commit
+						.commit-icon
+							span.mega-octicon-tab
+								span.mega-octicon.octicon-check
+						p.commit-body
+							| #{first} attended 
+							if commit.time
+								b
+									a(href='/events/times/'+commit.time._id) #{commit.time.title}
+								|  on #{humanDatetime(commit.time.endDate)} and earned 
+							else
+								| an event and earned 
+							b #{commit.hours}
+							|  volunteer hours.
+				else if !timePast
+					.commit
+						.commit-icon
+							span.mega-octicon-tab
+								span.mega-octicon.octicon-calendar
+						p.commit-body
+							| #{first} is attending 
+							b
+								a(href='/events/times/'+commit.time._id) #{commit.time.title}
+							|  on #{humanDatetime(commit.time.endDate)}.
+

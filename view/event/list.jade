@@ -1,0 +1,39 @@
+
+extends ../application
+
+block title
+	| NHS Events
+
+block document
+	.pamphlet.paper
+		.section.section-header.section-header-navbar
+			h1 
+				.mega-octicon-tab
+					span.mega-octicon.octicon-calendar
+				| Events
+			if pov.isPro
+				.section-header-right-nav
+					a.btn.btn-primary(href='/events/create') 
+						.btn-icon
+							span.octicon.octicon-plus
+						| New Event
+		if events.length
+			for event in events
+				.section
+					if !event.publishedAt
+						b Draft 
+					span(style='color:'+event.committeeColor+';') #{capitalize(event.committee)} &nbsp;
+					time
+						.octicon-tab
+							span.octicon.octicon-calendar
+						if event.nextTime
+							|  #{humanDatetime(event.nextTime)}
+						else
+							|  No upcoming time
+
+					h1 
+						a(href='/events/'+event._id) #{event.title}
+					p #{event.subtitle}
+		else
+			.section
+				p There are no events..yet.

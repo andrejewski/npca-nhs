@@ -12,19 +12,12 @@ module.exports = function(reem, done) {
 	g.website = 'http://npcanhs.org';
 
 	g.board = [
-		member('Jacob Zimmer', 'President'),
-		member('Karley Nicolia', 'Vice President'),
-		member('Christine Wu', 'Secretary'),
-		member('Daniel Liszka', "Treasurer"),
-		member('Julianne Lanich', 'Advisor')
+		{name: 'Jacob Zimmer', title: 'President'},
+		{name: 'Karley Nicolia', title: 'Vice President'},
+		{name: 'Christine Wu', title: 'Secretary'},
+		{name: 'Daniel Liszka', title: 'Treasurer'},
+		{name: 'Julianne Lanich', title: 'Advisor'}
 	];
-
-	function member(name, title) {
-		return {
-			name: name,
-			title: title
-		};
-	}
 
 	reem.Post.use(markdown());
 

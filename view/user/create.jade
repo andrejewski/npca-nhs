@@ -1,0 +1,54 @@
+
+extends ../application
+
+block title
+	| Register Members
+
+block document
+	.document.paper
+		.section.section-header
+			h1 Register Members
+			p.
+				To make this data entry as painless as possible, the required fields are only the name and email fields.
+				Everything else can be added or updated later.
+
+			h3 
+				.octicon-tab
+					span.octicon.octicon-info
+				| Helpful Information
+			p.
+				Use the tab key to go to the next form field. 
+				Do not drink and drive.
+
+		form(method='post')
+			.section
+				table
+					thead
+						tr
+							th
+								label Full name
+							th
+								label Email address
+							th
+								label Committee
+							th
+								label Class
+					tbody
+						- var top = committeeList.shift();
+						- committeeList = committeeList.concat(top);
+						for e,i in Array(10)
+							tr
+								td
+									input.textbox(type='text', name='users['+i+'][name]', placeholder=pov.name)
+								td
+									input.textbox(type='text', name='users['+i+'][email]',  placeholder=pov.email)
+								td(style='width: 100px')
+									select(name='users['+i+'][committee]')
+										for committee in committeeList
+											option(value=committee)= capitalize(committee)
+								td(style='width: 100px')
+									input.textbox(type='number', name='users['+i+'][classOf]',  placeholder=pov.classOf)
+				.input-row
+					input.btn.btn-success(type='submit', value="Register Members")
+
+
